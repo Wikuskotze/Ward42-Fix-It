@@ -1,0 +1,403 @@
+{% extends "base.html" %}
+
+{% block title %}
+Ward 42 Fix-It
+{% endblock %}
+
+{% block content %}
+
+<section 
+    class="hero text-center py-5"
+    aria-labelledby="hero-heading">
+    <div class="container">
+
+        <h1 class="hero-heading">
+            Ward 42 Fix-It
+        </h1>
+
+        <p class="lead">
+            Report potholes, water leaks, broken streetlights and
+            illegal dumping in Ward 42. Track progress using your 
+            reference number and help improve your community.
+        </p>
+
+        <figure class="my-4">
+            <img
+                src="{{ url_for('static', filename='images/community-reporting.jpg') }}"
+                alt="Residents reporting community issues"
+                class="img-fluid rounded shadow-sm"
+                loading="lazy">
+        </figure>
+
+        <div class="mt-4">
+
+            <a href="{{ url_for('report') }}"
+                class="btn btn-success btn-lg me-md-2 mb-2 mb-md-0">
+                Report a Fault
+            </a>
+
+             <a href="{{ url_for('check_status') }}"
+               class="btn btn-outline-success btn-lg">
+                Check Status
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <h2 class="text-center mb-4">
+            About Ward 42 Fix-It
+        </h2>
+
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">Easy Reporting</h3>
+                        <p>
+                            Submit community problems quickly from
+                            your phone.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">Track Progress</h3>
+                        <p>
+                            Use your reference number to follow the
+                            status of your report.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="h5">Community Improvement</h3>
+                        <p>
+                            Help identify and prioritise issues that
+                            affect residents.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section 
+    class="py-5 bg-light"
+    aria-labelledby="benefits-heading">
+    <div class="container">
+
+        <h2 id="benefits-heading">
+            Why Use Ward 42 Fix-It?
+        </h2>
+
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+                <article class="card h-100">
+                    <div class="card-body">
+
+                        <h3 class="h5">
+                            Fast Reporting
+                        </h3>
+
+                        <p>
+                            Submit community issues directly
+                            from your mobile phone.
+                        </p>
+
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <article class="card h-100">
+                    <div class="card-body">
+
+                        <h3 class="h5">
+                            Track Progress
+                        </h3>
+
+                        <p>
+                            Check the status of your report
+                            using your unique reference number.
+                        </p>
+
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <article class="card h-100">
+                    <div class="card-body">
+
+                        <h3 class="h5">
+                            Improve Our Community
+                        </h3>
+
+                        <p>
+                            Help the coordinator identify and
+                            prioritise common problems.
+                        </p>
+
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <h2 class="mb-4">
+            How to Submit a Report
+        </h2>
+
+        <p>
+            Watch this short tutorial before submitting
+            a fault report.
+        </p>
+
+        <p class="text-muted">
+            Captions are available for users who are deaf or hard of hearing.
+        </p>
+
+        <div class="ratio ratio-16x9">
+
+            <video 
+                controls 
+                preload="metadata"
+                aria-label="Tutorial video explaining how to submit a Ward 42 Fix-It report">
+
+                 <source
+                    src="{{ url_for('static', filename='video/tutorial.mp4') }}"
+                    type="video/mp4">
+
+                 <source
+                    src="{{ url_for('static', filename='video/tutorial.webm') }}"
+                    type="video/webm">
+
+                 <track
+                    src="{{ url_for('static', filename='captions/tutorial.vtt') }}"
+                    kind="captions"
+                    srclang="en"
+                    label="English Captions"
+                    default>
+
+                Your browser does not support video playback.
+
+            </video>
+
+        </div>
+
+    </div>
+</section>
+
+<section 
+    class="py-5 bg-light"
+    aria-labelledby="categories-heading">
+    <div class="container">
+
+        <h2 id="categories-heading">
+            Report Categories
+        </h2>
+
+        <div class="row">
+
+            <div class="col-6 col-md-3 mb-4">
+                <article class="text-center">
+
+                     <img
+                        src="{{ url_for('static', filename='images/pothole.png') }}"
+                        alt="Icon representing pothole reports"
+                        class="img-fluid mb-2"
+                        loading="lazy">
+
+                    <h3 class="h5">
+                        Potholes
+                    </h3>
+
+                </article>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+                <article class="text-center">
+
+                     <img
+                        src="{{ url_for('static', filename='images/water-leak.png') }}"
+                        alt="Icon representing water leak reports"
+                        class="img-fluid mb-2"
+                        loading="lazy">
+
+                    <h3 class="h5">
+                        Water Leaks
+                    </h3>
+
+                </article>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+                <article class="text-center">
+
+                     <img
+                        src="{{ url_for('static', filename='images/streetlight.png') }}"
+                        alt="Icon representing broken streetlight reports"
+                        class="img-fluid mb-2"
+                        loading="lazy">
+
+                    <h3 class="h5">
+                        Streetlights
+                    </h3>
+
+                </article>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+                <article class="text-center">
+
+                     <img
+                        src="{{ url_for('static', filename='images/dumping.png') }}"
+                        alt="Icon representing illegal dumping reports"
+                        class="img-fluid mb-2"
+                        loading="lazy">
+
+                    <h3 class="h5">
+                        Illegal Dumping
+                    </h3>
+
+                </article>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <h2 class="text-center mb-4">
+            Community Statistics
+        </h2>
+
+        <div class="row text-center">
+
+            <div class="col-6 col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="display-6 fw-bold text-dark">
+                            {{ total_reports }}
+                        </h3>
+                        <p class="mb-0">
+                            Total Reports
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="display-6 fw-bold text-warning">
+                            {{ open_reports }}
+                        </h3>
+                        <p class="mb-0">
+                            Open Reports
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="display-6 fw-bold text-primary">
+                            {{ in_progress_reports }}
+                        </h3>
+                        <p class="mb-0">
+                            In Progress
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="display-6 fw-bold text-success">
+                            {{ closed_reports }}
+                        </h3>
+                        <p class="mb-0">
+                            Closed Reports
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="py-5 text-center">
+    <div class="container">
+
+        <h2>
+            Ready to Help?
+        </h2>
+
+        <p>
+            Report a problem or check an existing report.
+        </p>
+
+        <a href="{{ url_for('report') }}"
+           class="btn btn-success me-md-2 mb-2 mb-md-0">
+            Submit Report
+        </a>
+
+        <a href="{{ url_for('check_status') }}"
+           class="btn btn-outline-success">
+            Track Report
+        </a>
+
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+
+        <h2>Coordinator Access</h2>
+
+        <p>
+            Coordinators can log in to manage reports
+            and update statuses.
+        </p>
+
+        <a href="{{ url_for('login') }}"
+            class="btn btn-dark">
+            Coordinator Login
+        </a>
+
+    </div>
+</section>
+
+{% endblock %}

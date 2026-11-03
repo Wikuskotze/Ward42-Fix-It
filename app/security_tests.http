@@ -1,0 +1,118 @@
+### ==========================================
+### Ward 42 Fix-It Security Tests
+### ==========================================
+
+
+### 1. Invalid Login Attempt
+POST http://127.0.0.1:5000/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=WrongPassword
+
+
+### ==========================================
+
+
+### 2. Access Dashboard Without Login
+GET http://127.0.0.1:5000/dashboard
+
+
+### ==========================================
+
+
+### 3. Access Manage Reports Without Login
+GET http://127.0.0.1:5000/reports
+
+
+### ==========================================
+
+
+### 4. Access API Without Login
+GET http://127.0.0.1:5000/api/reports/summary
+
+
+### ==========================================
+
+
+### 5. Submit Report Without CSRF Token
+POST http://127.0.0.1:5000/report
+Content-Type: application/x-www-form-urlencoded
+
+category=Pothole&
+street=Main Street&
+description=Large pothole in the road&
+reporter_name=Test User&
+reporter_cell=0821234567
+
+
+### ==========================================
+
+
+### 6. Update Status Without CSRF Token
+POST http://127.0.0.1:5000/reports/1/update
+Content-Type: application/x-www-form-urlencoded
+
+status=Closed
+
+
+### ==========================================
+
+
+### 7. Invalid Report Status
+POST http://127.0.0.1:5000/reports/1/update
+Content-Type: application/x-www-form-urlencoded
+
+csrf_token=testtoken&
+status=Hacked
+
+
+### ==========================================
+
+
+### 8. Invalid Reference Lookup
+POST http://127.0.0.1:5000/status
+Content-Type: application/x-www-form-urlencoded
+
+reference=INVALID-REFERENCE
+
+
+### ==========================================
+
+
+### 9. File Upload With Invalid Extension
+POST http://127.0.0.1:5000/report
+Content-Type: multipart/form-data
+
+photo=@malware.exe
+
+
+### ==========================================
+
+
+### 10. SQL Injection Login Test
+POST http://127.0.0.1:5000/login
+Content-Type: application/x-www-form-urlencoded
+
+Username=' OR 1=1 --
+&password=test
+
+
+### ==========================================
+
+
+### 11. XSS Test in Description Field
+POST http://127.0.0.1:5000/report
+Content-Type: application/x-www-form-urlencoded
+
+category=Other&
+street=Main Street&
+description=<script>alert('XSS')</script>&
+reporter_name=Attacker&
+reporter_cell=0821234567
+
+### 12. Invalid Status Value
+
+POST http://127.0.0.1:5000/reports/1/update
+Content-Type: application/x-www-form-urlencoded
+
+status=Bananas

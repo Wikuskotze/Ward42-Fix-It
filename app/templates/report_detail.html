@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}
+Report Details
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <h1 class="mb-4">
+                Report {{ report.reference }}
+            </h1>
+
+            <p>
+                <strong>Category:</strong>
+                {{ report.category }}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                {{ report.street }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                {{ report.status }}
+            </p>
+
+            <p>
+                <strong>Reported By:</strong>
+                {{ report.reporter_name }}
+            </p>
+
+            <p>
+                <strong>Contact Number:</strong>
+                {{ report.reporter_cell }}
+            </p>
+
+            <p>
+                <strong>Description:</strong>
+                {{ report.description }}
+            </p>
+
+            <p>
+                <strong>Submitted:</strong>
+                {{ report.created_at.strftime('%d %b %Y') }}
+            </p>
+
+            {% if report.photo_filename %}
+
+            <div class="mt-4">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='uploads/' + report.photo_filename
+                    ) }}"
+                    alt="Photo attached to report {{ report.reference }}"
+                    class="img-fluid rounded shadow-sm">
+
+            </div>
+
+            {% endif %}
+
+            <div class="mt-4">
+
+                <a
+                    href="{{ url_for('reports') }}"
+                    class="btn btn-secondary">
+
+                    Back to Reports
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+# Virtual Environment
+venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Database
+*.db
+app/faults.db
+
+# Uploaded Photos
+app/static/uploads/
+
+# Environment Variables
+.env
+
+# VS Code
+.vscode/
+
+# Windows Files
+Thumbs.db
+
+# Mac Files
+.DS_Store

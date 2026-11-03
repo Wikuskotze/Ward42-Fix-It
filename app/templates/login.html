@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %}
+Coordinator Login
+{% endblock %}
+
+{% block content %}
+
+<section
+    class="py-5"
+    aria-labelledby="login-heading">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-6 col-lg-5">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body p-4">
+
+                        <h1
+                            id="login-heading"
+                            class="h2 mb-4 text-center">
+
+                            Coordinator Login
+
+                        </h1>
+
+                        <p class="text-muted text-center">
+                            Fields marked with
+                            <span aria-hidden="true">*</span>
+                            are required.
+                        </p>
+
+                        <p class="text-muted text-center">
+
+                            Sign in to manage reports and update
+                            service request statuses.
+
+                        </p>
+
+                        <div class="alert alert-light border">
+
+                            Enter your coordinator credentials to access 
+                            report management and dashboard functions.
+
+                        </div> 
+
+                        <p
+                            id="loginHelp"
+                            class="visually-hidden">
+
+                            Coordinator login form requiring a username 
+                            and password.
+                        
+                        </p>
+
+                        <div class="form-text text-center mt-3">
+
+                            If you cannot access your account,
+                            contact the system administrator.
+
+                        </div>
+
+                        <form
+                            method="POST"
+                            aria-describedby="loginHelp"
+                            aria-label="Coordinator login form">
+
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token }}">
+
+                            <!-- Username -->
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="username"
+                                    class="form-label">
+
+                                    Username
+                                    <span
+                                        class="text-danger"
+                                        aria-hidden="true">
+                                        *
+                                    </span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="username"
+                                    name="username"
+                                    value="{{request.form.get('username', '') }}"
+                                    maxlength="50"
+                                    pattern="[A-Za-z0-9._-]{3,50}"
+                                    autocomplete="username"
+                                    aria-describedby="usernameHelp"
+                                    aria-required="true"
+                                    required
+                                    autofocus>
+
+                                <div id="usernameHelp" class="form-text">
+
+                                    Enter the username assigned by the system administrator.
+
+                                </div>
+
+                            </div>
+
+                            <!-- Password -->
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="password"
+                                    class="form-label">
+
+                                    Password
+                                    <span
+                                        class="text-danger"
+                                        aria-hidden="true">
+                                        *
+                                    </span>
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    autocomplete="current-password"
+                                    minlength="8"
+                                    maxlength="128"
+                                    aria-describedby="passwordHelp"
+                                    aria-required="true"
+                                    required>
+
+                                <div id="passwordHelp" class="form-text">
+
+                                    Use the "Show Password" option to verify your entry before signing in.
+
+                                </div>
+
+                            </div>
+
+                            <!-- Show Password -->
+
+                            <div class="form-check mb-3">
+
+                                <input
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    id="showPassword"
+                                    aria-label="Show or hide password"
+                                    aria-controls="password"
+                                    aria-describedby="showPasswordHelp">
+
+                                <div 
+                                    id="showPasswordHelp"
+                                    class="visually-hidden">
+
+                                    Shows or hides the password entered in the password field.
+
+                                </div>
+
+                                <label
+                                    id="showPasswordLabel"
+                                    class="form-check-label"
+                                    for="showPassword">
+
+                                    Show Password
+
+                                </label>
+
+                            </div>
+
+                            {% if error %}
+
+                            <div
+                                class="alert alert-danger"
+                                role="alert"
+                                aria-live="assertive">
+
+                                {{ error }}
+
+                            </div>
+
+                            {% endif %}
+
+                            <div
+                                id="loginErrors"
+                                tabindex="-1"
+                                class="alert alert-danger d-none"
+                                role="alert"
+                                aria-live="assertive"
+                                aria-atomic="true">
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="btn btn-success w-100">
+
+                                Sign In
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <div class="alert alert-secondary mt-3">
+
+                    <strong>Security Notice:</strong>
+
+                    Access is restricted to authorised
+                    Ward 42 Fix-It coordinators.
+
+                </div>
+
+                <div class="alert alert-info mt-3">
+
+                    Coordinator access is restricted to authorised users 
+                    to protect residents' personal information in accordance
+                    with the Protection of Personal Information Act (POPIA).
+
+                </div>
+
+                <div class="alert alert-warning mt-3">
+
+                    Repeated failed login attempts may result 
+                    in temporary account restrictions.
+
+                </div>
+
+                <div class="form-text text-center">
+
+                    Never share your password with another volunteer 
+                    or community member.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% block scripts %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/login.js'
+    ) }}">
+</script>
+
+{% endblock %}
+
+{% endblock %}
